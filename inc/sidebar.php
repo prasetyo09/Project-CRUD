@@ -29,11 +29,21 @@
                     <li class="nav-item active">
                         <a
 
-                            href="#dashboard"
+                            href="dashboard.php"
 
                             aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+
+                            href="user.php"
+
+                            aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <p>User</p>
                         </a>
                     </li>
                     <!-- <li class="nav-section">

@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
     exit();
   } else {
     // KALAU GAGAL TETAP DI LOGIN
-    header("location:signin.php");
+    header("location:index.php");
     exit();
   }
 }

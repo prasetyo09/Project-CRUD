@@ -2,7 +2,7 @@
 session_start();
 session_regenerate_id();
 if (!isset($_SESSION['NAME'])) {
-    header("location:signin.php");
+    header("location:index.php");
     exit();
 }
 ?>
@@ -78,9 +78,7 @@ if (!isset($_SESSION['NAME'])) {
           </div>
           <div class="row">
             <div class="col-sm-6 col-md-12">
-                <?php
-                echo $_SESSION['NAME'];
-                ?>
+              
             </div>
           </div>
         </div>
@@ -104,7 +102,7 @@ if (!isset($_SESSION['NAME'])) {
             </ul>
           </nav>
           <div class="copyright">
-            2024, made with <i class="fa fa-heart heart text-danger"></i> by
+            2024, made with <i class="fa fa-heart heart text-danger">Prasetyo Ari Nugroho</i> by
             <a href="http://www.themekita.com">ThemeKita</a>
           </div>
           <div>

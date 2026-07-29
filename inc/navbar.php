@@ -66,7 +66,7 @@
                                 <a href="#">
                                     <div class="notif-img">
                                         <img
-                                            src="assets/img/jm_denis.jpg"
+                                            src="assets/inapp-1.0.0/src/assets/img/jm_denis.jpg"
                                             alt="Img Profile" />
                                     </div>
                                     <div class="notif-content">
@@ -90,7 +90,7 @@
                                 <a href="#">
                                     <div class="notif-img">
                                         <img
-                                            src="assets/img/mlane.jpg"
+                                            src="assets/inapp-1.0.0/src/assets/img/mlane.jpg"
                                             alt="Img Profile" />
                                     </div>
                                     <div class="notif-content">
