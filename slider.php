@@ -10,13 +10,13 @@ if (!isset($_SESSION['NAME'])) {
 }
 
 //tampil semua data dari user
-$query = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
+$query = mysqli_query($conn, "SELECT * FROM sliders ORDER BY id DESC");
 $rows  = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 //jika params delete ada
 if (isset($_GET['delete'])){
     $delete = $_GET ['delete'];
-    $delete = mysqli_query ($conn, "DELETE FROM users WHERE id='$delete'");
+    $delete = mysqli_query ($conn, "DELETE FROM sliders WHERE id='$delete'");
     header("location:user.php?hapus=berhasil");
 }
 ?>
@@ -82,12 +82,12 @@ if (isset($_GET['delete'])){
             <div
                 class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                 <div>
-                <h3 class="fw-bold mb-3">User Page</h3>
-                <h6 class="op-7 mb-2">Page for user information</h6>
+                <h3 class="fw-bold mb-3">Slider</h3>
+                <h6 class="op-7 mb-2"></h6>
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
                 <!-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> -->
-                <a href="create-user.php" class="btn btn-primary btn-round">Create New User</a>
+                <a href="create-slider.php" class="btn btn-primary btn-round">Create New Slide</a>
                 </div>
             </div>
             <div class="row">
@@ -98,19 +98,31 @@ if (isset($_GET['delete'])){
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama</th>
-                                <th>Email</th>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Subtitle</th>
+                                <th>Description</th>
+                                <th>Text Button 1</th>
+                                <th>Link Button 1</th>
+                                <th>Text Button 2</th>
+                                <th>Link Button 2</th>
                                 <th>ACTION</th>
                             </tr>
                             <tbody>
                                 <?php foreach($rows as $index => $row):?>
                                 <tr>
                                     <td><?php echo $index + 1?></td>
-                                    <td><?php echo $row['name'];?></td>
-                                    <td><?php echo $row['email'];?></td>
+                                    <td><?php echo $row['title'];?></td>
+                                    <td><?php echo $row['image'];?></td>
+                                    <td><?php echo $row['subtitle'];?></td>
+                                    <td><?php echo $row['description'];?></td>
+                                    <td><?php echo $row['button1_text'];?></td>
+                                    <td><?php echo $row['button1_link'];?></td>
+                                    <td><?php echo $row['button2_text'];?></td>
+                                    <td><?php echo $row['button2_link'];?></td>
                                     <td>
-                                        <a href="create-user.php?edit=<?php echo $row['id']?>" class="btn btn-success btn-sm">Edit</a>
-                                        <a onclick="return confirm('Are you sure want to delete this data?')" href="user.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="create-slider.php?edit=<?php echo $row['id']?>" class="btn btn-success btn-sm">Detail</a>
+                                        <a onclick="return confirm('Are you sure want to delete this data?')" href="slider.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                                 <?php endforeach ?>

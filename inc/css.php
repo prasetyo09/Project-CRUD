@@ -17,7 +17,7 @@
                 "Font Awesome 5 Brands",
                 "simple-line-icons",
             ],
-            urls: ["assets/css/fonts.min.css"],
+            urls: ["assets/kaiadmin-lite-1.2.0/assets/css/fonts.min.css"],
         },
         active: function() {
             sessionStorage.fonts = true;

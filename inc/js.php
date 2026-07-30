@@ -19,7 +19,7 @@
   <script src="assets/kaiadmin-lite-1.2.0/assets/js/plugin/datatables/datatables.min.js"></script>
 
   <!-- Bootstrap Notify -->
-  <script src="assets/kaiadmin-lite-1.2.0/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+  <!-- <script src="assets/kaiadmin-lite-1.2.0/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script> -->
 
   <!-- jQuery Vector Maps -->
   <script src="assets/kaiadmin-lite-1.2.0/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>

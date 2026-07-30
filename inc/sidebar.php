@@ -32,7 +32,7 @@
                             href="dashboard.php"
 
                             aria-expanded="false">
-                            <i class="fas fa-home"></i>
+                            <i class="fa fa-home"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
@@ -42,10 +42,41 @@
                             href="user.php"
 
                             aria-expanded="false">
-                            <i class="fas fa-user"></i>
+                            <i class="fa fa-user"></i>
                             <p>User</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a
+
+                            href="slider.php"
+
+                            aria-expanded="false">
+                            <i class="fa fa-image"></i>
+                            <p>Slider</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+
+                            href="contact.php"
+
+                            aria-expanded="false">
+                            <i class="fa fa-address-book"></i>
+                            <p>Contact</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+
+                            href="settings.php"
+
+                            aria-expanded="false">
+                            <i class="fa fa-cog"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
+                    
                     <!-- <li class="nav-section">
                         <span class="sidebar-mini-icon">
                             <i class="fa fa-ellipsis-h"></i>
