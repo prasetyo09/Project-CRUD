@@ -26,7 +26,7 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a
 
                             href="dashboard.php"
@@ -64,6 +64,16 @@
                             aria-expanded="false">
                             <i class="fa fa-address-book"></i>
                             <p>Contact</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+
+                            href="resume.php"
+
+                            aria-expanded="false">
+                            <i class="fa fa-address-book"></i>
+                            <p>Resume</p>
                         </a>
                     </li>
                     <li class="nav-item">
