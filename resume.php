@@ -10,13 +10,13 @@ if (!isset($_SESSION['NAME'])) {
 }
 
 //tampil semua data dari user
-$query = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
+$query = mysqli_query($conn, "SELECT * FROM resume ORDER BY id DESC");
 $rows  = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 //jika params delete ada
 if (isset($_GET['delete'])){
     $delete = $_GET ['delete'];
-    $delete = mysqli_query ($conn, "DELETE FROM users WHERE id='$delete'");
+    $delete = mysqli_query ($conn, "DELETE FROM resume WHERE id='$delete'");
     header("location:user.php?hapus=berhasil");
 }
 ?>

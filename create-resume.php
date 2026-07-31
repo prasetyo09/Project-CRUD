@@ -17,17 +17,17 @@ $row  = mysqli_fetch_assoc($query);
 if (isset($_POST['save'])) {
     $title = $_POST['title'];
     $year_start = $_POST['year_start'];
-    $year_start = $_POST['year_start'];
-    $password = $_POST['password'] ? $_POST['password'] : $row['password'];
-    $pass = sha1($password);
+    $year_end = $_POST['year_end'];
+    $subtitle = $_POST['subtitle'];
+    $description = $_POST['description'];
 
     if($id){
-        $update = mysqli_query($conn, "UPDATE users SET name='$name', email='$email', password='$pass' WHERE id='$id'");
-        header("location:user.php?update=berhasil");
+        $update = mysqli_query($conn, "UPDATE resume SET title='$title', year_start='$year_start', year_end='$year_end', subtitle='$subtitle', description='$description' WHERE id='$id'");
+        header("location:resume.php?update=berhasil");
 
     } else{
-        $insert = mysqli_query($conn, "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$pass')");
-        header("location:user.php?tambah=berhasil");
+        $insert = mysqli_query($conn, "INSERT INTO resume (title, year_start, year_end, subtitle, description) VALUES ('$title', '$year_start', '$year_end', '$subtitle', '$description')");
+        header("location:resume.php?tambah=berhasil");
     }
     
 }
