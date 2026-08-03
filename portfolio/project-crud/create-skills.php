@@ -11,29 +11,20 @@ if (!isset($_SESSION['NAME'])) {
 
 // Jika tombol simpan ditekan, maka data akan tersimpan
 $id = isset($_GET['edit']) ? $_GET['edit'] : '';
-$query = mysqli_query($conn, "SELECT * FROM users WHERE id ='$id'");
+$query = mysqli_query($conn, "SELECT * FROM skills WHERE id ='$id'");
 $row  = mysqli_fetch_assoc($query);
 
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'] ? $_POST['password'] : $row['password'];
-    $pass = sha1($password);
-
-    $select = mysqli_query($conn, "SELECT email FROM users WHERE email = '$email'");
-    $checkEmail = mysqli_fetch_assoc($select);
-
-    if ($checkEmail) {
-        header("location:create-user.php?email=gagal");
-    }
+    $progress = $_POST['progress'];
 
     if($id){
-        $update = mysqli_query($conn, "UPDATE users SET name='$name', email='$email', password='$pass' WHERE id='$id'");
-        header("location:user.php?update=berhasil");
+        $update = mysqli_query($conn, "UPDATE skills SET name='$name', progress='$progress' WHERE id='$id'");
+        header("location:skills.php?update=berhasil");
 
     } else{
-        $insert = mysqli_query($conn, "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$pass')");
-        header("location:user.php?tambah=berhasil");
+        $insert = mysqli_query($conn, "INSERT INTO skills (name, progress) VALUES ('$name', '$progress')");
+        header("location:skills.php?tambah=berhasil");
     }
     
 }
@@ -102,7 +93,7 @@ if (isset($_POST['save'])) {
                 <div
                     class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                     <div>
-                        <h3 class="fw-bold mb-3"><?php echo isset($_GET['edit']) ? 'Edit User' : 'Create New User'?></h3>
+                        <h3 class="fw-bold mb-3"><?php echo isset($_GET['edit']) ? 'Edit SKills' : 'Create New Skills'?></h3>
                         <h6 class="op-7 mb-2"><?php echo isset($_GET['edit']) ? 'Edit your information' : 'Add a user based on the available information'?></h6>
                     </div>
                     <div class="ms-md-auto py-2 py-md-0">
@@ -124,21 +115,14 @@ if (isset($_POST['save'])) {
                             ?>
                             <form action="" method="post">
                                 <div class="mb-3">
-                                    <label for="" class="form-label fw-bold">Name</label>
+                                    <label for="" class="form-label fw-bold">Skill Name</label>
                                     <label for="">:</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required value="<?php echo ($id) ? $row['name'] : ''?>">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Skill Name" required value="<?php echo ($id) ? $row['name'] : ''?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label fw-bold">Email</label>
+                                    <label for="" class="form-label fw-bold">Progress</label>
                                     <label for="">:</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required value="<?php echo ($id) ? $row['email'] : ''?>"><br>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label fw-bold">
-                                        <?php echo ($id) ? 'Password <small class="text-secondary">(leave blank if you do not wish to change it)</small>' : 'Password'?>
-                                    </label>
-                                    <label for="">:</label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" <?php echo ($id) ? '' : 'required'?>>
+                                    <input type="number" class="form-control" name="progress" id="progress" placeholder="Enter Progress" required value="<?php echo ($id) ? $row['progress'] : ''?>"><br>
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn btn-primary rounded-4" name="save" type="submit">Save</button>

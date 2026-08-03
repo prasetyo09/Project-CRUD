@@ -69,6 +69,16 @@
                     <li class="nav-item">
                         <a
 
+                            href="skills.php"
+
+                            aria-expanded="false">
+                            <i class="fa fa-code"></i>
+                            <p>Skills</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+
                             href="contact.php"
 
                             aria-expanded="false">

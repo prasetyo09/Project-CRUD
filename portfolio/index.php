@@ -6,8 +6,12 @@ $sliders = mysqli_fetch_all($q_slider, MYSQLI_ASSOC);
 $q_setting = mysqli_query($conn, "SELECT * FROM settings ORDER BY id DESC LIMIT 1");
 $about = mysqli_fetch_assoc($q_setting);
 
-$q_resume = mysqli_query($conn, "SELECT * FROM resume ORDER BY id DESC LIMIT 1");
-$resume = mysqli_fetch_assoc($q_resume);
+$q_resume = mysqli_query($conn, "SELECT * FROM resume ORDER BY id DESC");
+$resume = mysqli_fetch_all($q_resume, MYSQLI_ASSOC);
+
+$q_skills = mysqli_query($conn, "SELECT * FROM skills ORDER BY id DESC");
+$skills = mysqli_fetch_all($q_skills, MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +40,7 @@ $resume = mysqli_fetch_assoc($q_resume);
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"> 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Clark</a>
+			<a class="navbar-brand" href="index.html">Prasetyo</a>
 			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu
 			</button>
@@ -126,7 +130,7 @@ $resume = mysqli_fetch_assoc($q_resume);
 							<h2 class="mb-4">About Me</h2>
 							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
 							<ul class="about-info mt-4 px-md-0 px-2">
-								<li class="d-flex"><span>Name:</span> <span>Clark Thompson</span></li>
+								<li class="d-flex"><span>Name:</span> <span>Prasetyo Ari Nugroho</span></li>
 								<li class="d-flex"><span>Date of birth:</span> <span>January 01, 1987</span></li>
 								<li class="d-flex"><span>Address:</span> <span><?php echo $about['address']?></span></li>
 								<li class="d-flex"><span>Website Name:</span> <span><?php echo $about['website_name']?></span></li>
@@ -159,51 +163,24 @@ $resume = mysqli_fetch_assoc($q_resume);
           </div>
         </div>
     		<div class="row">
+				<?php
+				foreach ($resume as $v) {
+				?>
     			<div class="col-md-6">
     				<div class="resume-wrap ftco-animate">
-    					<span class="date"><?php echo $resume['year_start']?> - <?php echo $resume['year_end']?></span>
-    					<h2><?php echo $resume['title']?></h2>
-    					<span class="position"><?php echo $resume['subtitle']?></span>
-    					<p class="mt-4"><?php echo $resume['description']?></p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Bachelor's Degree of C.A</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Diploma in Computer</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+    					<span class="date"><?php echo $v['year_start']?> - <?php echo $v['year_end']?></span>
+    					<h2><?php echo $v['title']?></h2>
+    					<span class="position"><?php echo $v['subtitle']?></span>
+    					<p class="mt-4"><?php echo $v['description']?></p>
     				</div>
     			</div>
-
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Art &amp; Creative Director</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Wordpress Developer</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2017-2018</span>
-    					<h2>UI/UX Designer</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    			</div>
+				<?php
+				}
+				?>
     		</div>
     		<div class="row justify-content-center mt-5">
     			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+    				<p><a href="#" class="btn btn-primary py-4 px-5" download="">Download CV</a></p>
     			</div>
     		</div>
     	</div>
@@ -288,32 +265,38 @@ $resume = mysqli_fetch_assoc($q_resume);
 		<section class="ftco-section" id="skills-section">
 			<div class="container">
 				<div class="row justify-content-center pb-5">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Skills</h1>
-            <h2 class="mb-4">My Skills</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
+			<div class="col-md-12 heading-section text-center ftco-animate">
+				<h1 class="big big-2">Skills</h1>
+				<h2 class="mb-4">My Skills</h2>
+				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+			</div>
         </div>
 				<div class="row">
+					<?php
+					foreach ($skills as $v) {
+					?>
 					<div class="col-md-6 animate-box">
 						<div class="progress-wrap ftco-animate">
-							<h3>Photoshop</h3>
+							<h3><?php echo $v['name'];?></h3>
 							<div class="progress">
-							 	<div class="progress-bar color-1" role="progressbar" aria-valuenow="90"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:90%">
-							    <span>90%</span>
-							  	</div>
+								<div class="progress-bar color-1" role="progressbar" aria-valuenow="<?php echo $v['progress'];?>"
+								aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $v['progress'] . "%";?>">
+								<span><?php echo $v['progress'] . "%";?></span>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 animate-box">
+					<?php
+					}
+					?>
+					<!-- <div class="col-md-6 animate-box">
 						<div class="progress-wrap ftco-animate">
 							<h3>jQuery</h3>
 							<div class="progress">
-							 	<div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:85%">
-							    <span>85%</span>
-							  	</div>
+								<div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
+								aria-valuemin="0" aria-valuemax="100" style="width:85%">
+								<span>85%</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -321,10 +304,10 @@ $resume = mysqli_fetch_assoc($q_resume);
 						<div class="progress-wrap ftco-animate">
 							<h3>HTML5</h3>
 							<div class="progress">
-							 	<div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:95%">
-							    <span>95%</span>
-							  	</div>
+								<div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
+								aria-valuemin="0" aria-valuemax="100" style="width:95%">
+								<span>95%</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -332,10 +315,10 @@ $resume = mysqli_fetch_assoc($q_resume);
 						<div class="progress-wrap ftco-animate">
 							<h3>CSS3</h3>
 							<div class="progress">
-							 	<div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:90%">
-							    <span>90%</span>
-							  	</div>
+								<div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
+								aria-valuemin="0" aria-valuemax="100" style="width:90%">
+								<span>90%</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -343,10 +326,10 @@ $resume = mysqli_fetch_assoc($q_resume);
 						<div class="progress-wrap ftco-animate">
 							<h3>WordPress</h3>
 							<div class="progress">
-							 	<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:70%">
-							    <span>70%</span>
-							  	</div>
+								<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
+								aria-valuemin="0" aria-valuemax="100" style="width:70%">
+								<span>70%</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -354,13 +337,13 @@ $resume = mysqli_fetch_assoc($q_resume);
 						<div class="progress-wrap ftco-animate">
 							<h3>SEO</h3>
 							<div class="progress">
-							 	<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-							    <span>80%</span>
-							  	</div>
+								<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
+								aria-valuemin="0" aria-valuemax="100" style="width:80%">
+								<span>80%</span>
+								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section>
