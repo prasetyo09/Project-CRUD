@@ -62,3 +62,9 @@
       fillColor: "rgba(255, 165, 52, .14)",
     });
   </script>
+  <script src="https://cdn.datatables.net/v/dt/dt-3.0.1/datatables.min.js" ></script>
+  <script>
+    const table = new DataTable('#myTable', {
+	// Configuration options
+    });
+  </script>

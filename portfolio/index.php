@@ -12,7 +12,7 @@ $resume = mysqli_fetch_all($q_resume, MYSQLI_ASSOC);
 $q_skills = mysqli_query($conn, "SELECT * FROM skills ORDER BY id DESC");
 $skills = mysqli_fetch_all($q_skills, MYSQLI_ASSOC);
 
-$q_projects = mysqli_query($conn, "SELECT * FROM projects ORDER BY id DESC");
+$q_projects = mysqli_query($conn, "SELECT * FROM projects ORDER BY id ASC");
 $projects = mysqli_fetch_all($q_projects, MYSQLI_ASSOC);
 
 ?>
@@ -358,22 +358,24 @@ $projects = mysqli_fetch_all($q_projects, MYSQLI_ASSOC);
 		<div class="container">
 			<div class="row justify-content-center pb-5">
 				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h1 class="big big-2">Projects</h1>
-					<h2 class="mb-4">Our Projects</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+					<h1 class="big big-2">Anime</h1>
+					<h2 class="mb-4">Our Waifu</h2>
+					<p>My Bini Gwehh, yang ini my bini. Yang itu jg my bini. Pokoknya semua punya gwehh</p>
 				</div>
 			</div>
 			<div class="row">
 				<?php foreach ($projects as $index => $v) {
 				?>
 					<div class="col-md-<?= $index == 0 ? '12' : ((int)($index / 2) % 2 == 0 ? '8' : '4') ?>">
-						<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(./project-crud/assets/img/<?php echo $v['image'] ?>);">
-							<div class="overlay"></div>
-							<div class="text text-center p-4">
-								<h3><a href="#"><?php echo $v['title'] ?></a></h3>
-								<span><?php echo $v['subtitle'] ?></span>
+						<a href="<?php echo $v['img_link']?>">
+							<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(./project-crud/assets/img/<?php echo $v['image'] ?>);">
+								<div class="overlay"></div>
+								<div class="text text-center p-4">
+									<h3><a href="#"><?php echo $v['title'] ?></a></h3>
+									<span><?php echo $v['subtitle'] ?></span>
+								</div>
 							</div>
-						</div>
+						</a>
 					</div>
 				<?php
 				}

@@ -17,7 +17,7 @@ $row  = mysqli_fetch_assoc($query);
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
     $progress = $_POST['progress'];
-
+  
     if($id){
         $update = mysqli_query($conn, "UPDATE skills SET name='$name', progress='$progress' WHERE id='$id'");
         header("location:skills.php?update=berhasil");

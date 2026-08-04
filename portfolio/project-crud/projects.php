@@ -102,13 +102,14 @@ if (isset($_GET['delete'])){
                 <div class="col-sm-6 col-md-12">
                     <div class="card">
                     <div class="card-body">
-                        <table class="table table-bordered table-striped text-center">
+                        <table class="table table-bordered table-striped text-center" id="myTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Subtitle</th>
                                 <th>Image</th>
+                                <th>Image Link</th>
                                 <th>ACTION</th>
                             </tr>
                             <tbody>
@@ -120,6 +121,7 @@ if (isset($_GET['delete'])){
                                     <td>
                                         <img src="assets/img/<?php echo $row['image'];?>" width="176" class="shadow" alt="img.jpg">
                                     </td>
+                                    <td><?php echo $row['img_link'];?></td>
                                     <td>
                                         <a href="create-projects.php?edit=<?php echo $row['id']?>" class="btn btn-success btn-sm">Edit</a>
                                         <a onclick="return confirm('Are you sure want to delete this data?')" href="projects.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-sm">Delete</a>

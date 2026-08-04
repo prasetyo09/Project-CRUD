@@ -18,6 +18,7 @@ if (isset($_POST['save'])) {
     $title = $_POST['title'];
     $subtitle = $_POST['subtitle'];
     $image = $_FILES['image'];
+    $img_link = $_POST['img_link'];
 
     if ($image['error'] == 0) {
         $filename = uniqid() . "_" . basename($image['name']);
@@ -33,15 +34,15 @@ if (isset($_POST['save'])) {
         move_uploaded_file($image['tmp_name'],  $filepath);
 
         if($id){
-            $update = mysqli_query($conn, "UPDATE projects SET title='$title', subtitle='$subtitle', image='$filename' WHERE id='$id'");
+            $update = mysqli_query($conn, "UPDATE projects SET title='$title', subtitle='$subtitle', image='$filename', img_link = $img_link WHERE id='$id'");
             header("location:projects.php?update=berhasil");
 
         } else{
-            $insert = mysqli_query($conn, "INSERT INTO projects (title, image, subtitle ) VALUES ('$title','$filename',  '$subtitle')");
+            $insert = mysqli_query($conn, "INSERT INTO projects (title, image, subtitle, img_link ) VALUES ('$title','$filename',  '$subtitle', '$img_link')");
             header("location:projects.php?tambah=berhasil");
         }
     } else {
-        $update = mysqli_query($conn, "UPDATE projects SET title='$title', subtitle='$subtitle' WHERE id='$id'");
+        $update = mysqli_query($conn, "UPDATE projects SET title='$title', subtitle='$subtitle', img_link = '$img_link' WHERE id='$id'");
         header("location:projects.php?update=berhasil");
     }
 }
@@ -136,6 +137,11 @@ if (isset($_POST['save'])) {
                                     <label for="" class="form-label fw-bold">Image</label>
                                     <label for="">:</label>
                                     <input type="file" name="image" src="" alt="" value="<?php echo($id) ? $row['image'] : ''?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label fw-bold">Image Link</label>
+                                    <label for="">:</label>
+                                    <input type="url" class="form-control" name="img_link" id="img_link" placeholder="Enter Link Button" required value="<?php echo ($id) ? $row['img_link'] : ''?>"><br>
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn btn-primary rounded-4" name="save" type="submit">Save</button>

@@ -83,7 +83,7 @@ if (isset($_GET['delete'])){
                 class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                 <div>
                 <h3 class="fw-bold mb-3">Skills</h3>
-                <h6 class="op-7 mb-2">Page for user information</h6>
+                <h6 class="op-7 mb-2">User skills information</h6>
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
                 <!-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> -->
@@ -94,7 +94,7 @@ if (isset($_GET['delete'])){
                 <div class="col-sm-6 col-md-12">
                     <div class="card">
                     <div class="card-body">
-                        <table class="table table-bordered table-striped text-center">
+                        <table class="table table-bordered table-striped text-center" id="myTable">
                             <thead>
                             <tr>
                                 <th>ID</th>

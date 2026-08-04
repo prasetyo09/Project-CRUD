@@ -78,7 +78,28 @@ if (!isset($_SESSION['NAME'])) {
           </div>
           <div class="row">
             <div class="col-sm-6 col-md-12">
-              
+              <table id="#myTable">
+                <tr>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                </tr>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                  </tr>
+                </tbody>
+
+
+              </table>
             </div>
           </div>
         </div>
@@ -278,6 +299,8 @@ if (!isset($_SESSION['NAME'])) {
   <?php
   include "inc/js.php";
   ?>
+
+  
 </body>
 
 </html>
