@@ -10,14 +10,22 @@ if (!isset($_SESSION['NAME'])) {
 }
 
 //tampil semua data dari user
-$query = mysqli_query($conn, "SELECT * FROM skills ORDER BY id DESC");
+$query = mysqli_query($conn, "SELECT * FROM projects ORDER BY id DESC");
 $rows  = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 //jika params delete ada
 if (isset($_GET['delete'])){
     $delete = $_GET ['delete'];
-    $delete = mysqli_query ($conn, "DELETE FROM skills WHERE id='$delete'");
-    header("location:user.php?hapus=berhasil");
+    $img = mysqli_query($conn, "SELECT image FROM projects WHERE id = '$delete'");
+    $rowimg = mysqli_fetch_assoc($img);
+    if ($delete && !empty($rowimg['image'])){
+        $old_picture_path = "assets/img/" . $rowimg['image'];
+        if(file_exists($old_picture_path)){
+            unlink($old_picture_path);
+        }
+    }
+    $delete = mysqli_query($conn, "DELETE FROM projects WHERE id='$delete'");
+    header("location:projects.php?hapus=berhasil");
 }
 ?>
 
@@ -26,7 +34,7 @@ if (isset($_GET['delete'])){
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Skills</title>
+    <title>User Page</title>
     <meta
         content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
         name="viewport" />
@@ -82,12 +90,12 @@ if (isset($_GET['delete'])){
             <div
                 class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                 <div>
-                <h3 class="fw-bold mb-3">Skills</h3>
+                <h3 class="fw-bold mb-3">Projects</h3>
                 <h6 class="op-7 mb-2">Page for user information</h6>
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
                 <!-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> -->
-                <a href="create-skills.php" class="btn btn-primary btn-round">Create New Sk ills</a>
+                <a href="create-projects.php" class="btn btn-primary btn-round">Create New Project</a>
                 </div>
             </div>
             <div class="row">
@@ -98,19 +106,23 @@ if (isset($_GET['delete'])){
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Progress</th>
+                                <th>Title</th>
+                                <th>Subtitle</th>
+                                <th>Image</th>
                                 <th>ACTION</th>
                             </tr>
                             <tbody>
                                 <?php foreach($rows as $index => $row):?>
                                 <tr>
                                     <td><?php echo $index + 1?></td>
-                                    <td><?php echo $row['name'];?></td>
-                                    <td><?php echo $row['progress'] . "%";?></td>
+                                    <td><?php echo $row['title'];?></td>
+                                    <td><?php echo $row['subtitle'];?></td>
                                     <td>
-                                        <a href="create-skills.php?edit=<?php echo $row['id']?>" class="btn btn-success btn-sm">Edit</a>
-                                        <a onclick="return confirm('Are you sure want to delete this data?')" href="skills.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-sm">Delete</a>
+                                        <img src="assets/img/<?php echo $row['image'];?>" width="176" class="shadow" alt="img.jpg">
+                                    </td>
+                                    <td>
+                                        <a href="create-projects.php?edit=<?php echo $row['id']?>" class="btn btn-success btn-sm">Edit</a>
+                                        <a onclick="return confirm('Are you sure want to delete this data?')" href="projects.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                                 <?php endforeach ?>
