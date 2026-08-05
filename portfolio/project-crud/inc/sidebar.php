@@ -39,7 +39,7 @@
                     <li class="nav-item">
                         <a
 
-                            href="user.php"
+                            href="app.php?page=user"
 
                             aria-expanded="false">
                             <i class="fa fa-user"></i>
@@ -49,7 +49,7 @@
                     <li class="nav-item">
                         <a
 
-                            href="slider.php"
+                            href="app.php?page=slider"
 
                             aria-expanded="false">
                             <i class="fa fa-image"></i>
@@ -59,7 +59,7 @@
                     <li class="nav-item">
                         <a
 
-                            href="resume.php"
+                            href="app.php?page=resume"
 
                             aria-expanded="false">
                             <i class="fa fa-address-book"></i>

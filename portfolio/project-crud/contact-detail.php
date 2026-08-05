@@ -10,8 +10,9 @@ if (!isset($_SESSION['NAME'])) {
 }
 
 //tampil semua data dari user
-$query = mysqli_query($conn, "SELECT * FROM contact ORDER BY id DESC");
-$rows  = mysqli_fetch_all($query, MYSQLI_ASSOC);
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+$query = mysqli_query($conn, "SELECT * FROM contact WHERE id = '$id' ");
+$row  = mysqli_fetch_assoc($query);
 
 //jika params delete ada
 if (isset($_GET['delete'])){
@@ -82,41 +83,40 @@ if (isset($_GET['delete'])){
             <div
                 class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                 <div>
-                    <h3 class="fw-bold mb-3">Contact</h3>
+                    <h3 class="fw-bold mb-3">Contact Detail</h3>
                     <h6 class="op-7 mb-2">Contact Page</h6>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-12">
                     <div class="card">
-                    <div class="card-body">
-                        <table class="table table-bordered table-striped text-center" id="myTable">
-                            <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Subject</th>
-                                <th>ACTION</th>
-                            </tr>
-                            <tbody>
-                                <?php foreach($rows as $index => $row):?>
-                                <tr>
-                                    <td><?php echo $index + 1?></td>
-                                    <td><?php echo $row['name'];?></td>
-                                    <td><?php echo $row['email'];?></td>
-                                    <td><?php echo $row['subject']?></td>
-                                    <td>
-                                        <a href="contact-detail.php?id=<?php echo $row['id']?>" class="btn btn-success btn-sm">Detail</a>
-                                        <a onclick="return confirm('Are you sure want to delete this data?')" href="contact.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
-                                </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                            </thead>
-                        </table>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="form-label fw-bold">Name</label>
+                                    <label for="" class="form-label fw-bold">:</label>
+                                    <input type="text" class="form-control" readonly value="<?php echo $row['name'] ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label fw-bold">Email</label>
+                                    <label for="" class="form-label fw-bold">:</label>
+                                    <input type="text" class="form-control" readonly value="<?php echo $row['email'] ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label fw-bold">Subject</label>
+                                    <label for="" class="form-label fw-bold">:</label>
+                                    <input type="text" class="form-control" readonly value="<?php echo $row['subject']?>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="" class="form-label fw-bold">Message</label>
+                                    <label for="" class="form-label fw-bold">:</label>
+                                    <textarea name="message" id="" class="form-control" readonly><?php echo $row['message']?></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             </div>
